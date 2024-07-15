@@ -76,3 +76,6 @@ body {
     font-size: 1.85rem;
     margin: 0;
 }
+.delete{
+    color:red;
+}
