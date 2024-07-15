@@ -65,7 +65,7 @@
             event.preventDefault();
 
             const formData = new FormData(form);
-            axios.post("http://localhost/front-test/auth/signup.php", formData)
+            axios.post("http://localhost/flight-full-stack/Back-End/auth/signup.php", formData)
                 .then(response => {
                     console.log(response.data);
                     form.reset();
