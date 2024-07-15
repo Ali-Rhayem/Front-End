@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard</title>
-    <link rel="stylesheet" href="./styles/create.css" />
+    <link rel="stylesheet" href="admin.css" />
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
     
@@ -79,6 +79,8 @@
   
         <label for="price_per_km">Price per Km:</label>
         <input type="number" id="price_per_km" name="price_per_km" required placeholder="Write here..." />
+        <label for="rate">Rate</label>
+        <input type="number" id="rate" name="rate" required placeholder="Write here..." />
   
         <button type="submit" id="btn">Submit</button>
       </form>
@@ -102,7 +104,6 @@
   
         <label for="price_per_km">Price per Km:</label>
         <input type="number" id="price_per_km" name="price_per_km" required placeholder="Write here..." />
-  
         <button type="submit" id="btn">Submit</button>
       </form>
 </div>
@@ -110,9 +111,6 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-
-    <script src="scripts/create.js"></script>
-    
-    
+    <script src="../scripts/Create.js"></script>
 </body>
 </html>
