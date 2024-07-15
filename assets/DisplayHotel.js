@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
     async function fetchHotels() {
         try {
-            const response = await axios.get('http://localhost/FlightManagementSystem/Hotels/readAll.php');
+            const response = await axios.get('http://localhost/flight-full-stack/Back-End/Hotels/readAll.php');
             const data = response.data;
             const hotelsContainer = document.getElementById('hotels-container');
             if (data.hotels) {

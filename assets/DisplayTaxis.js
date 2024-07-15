@@ -1,6 +1,6 @@
 async function DisplayTaxis() {
     try {
-        const response = await axios.get('http://localhost/FlightManagementSystem/Taxi/readAll.php');
+        const response = await axios.get('http://localhost/flight-full-stack/Back-End/Taxi/readAll.php');
         const data = response.data;
         const taxisContainer = document.getElementById("taxis-container");
         
