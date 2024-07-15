@@ -4,58 +4,67 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="home.css">
-    <title>JourneyJOy</title>
-    
+    <link href="https://fonts.googleapis.com/css2?family=Imperial+Script&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>JourneyJoy</title>
 </head>
 <body>
     <header>
-        <h1>ABBAS' Airport</h1>
+        <div class="Navbar">
+            <a class="logo" href="#">LetsFly</a>
+            <div class="nav_items">
+                <a href="#">Flights</a>
+                <a href="#">Hotels</a>
+                <a href="#">Taxis</a>
+                <a href="#">Contact</a>
+            </div>
+        </div>
     </header>
     
-    <nav>
-        <a href="#">Home</a>
-        <a href="#">Flights</a>
-        <a href="#">Hotels</a>
-        <a href="#">Taxis</a>
-        <a href="#">Contact</a>
-    </nav>
+    <main>
+        <h1 class="section_1">Where Do You Want To Go ?</h1>
+        <div class="spline-container">
+            <div class="overlay">
+                <h1 class="overlay-text" id="welcome-text"></h1>
+                <button class="overlay-btn" id="btn-flights">Search Flights Everywhere</button>
+            </div>
+            <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.0/build/spline-viewer.js"></script>
+            <spline-viewer id="spline-viewer" url="https://prod.spline.design/wxhjb52PbBzJJlKD/scene.splinecode"></spline-viewer>
+            <div class="tooltip" id="tooltip"></div>
+        </div>
 
-    <div class="spline-container">
-        <div class="overlay">
-            <h1 class="overlay-text" id="welcome-text"></h1>
-            <button class="overlay-btn" id="btn-flights">Search Flights Everywhere</button>
+        <div class="cards-container">
+            <div class="card">
+                <img src="Assets/person1.jpg" alt="Person 1">
+                <h2>John Doe</h2>
+                <p>"Booking my flight through LetsFly was a seamless experience. The interface is user-friendly and I found great deals easily."</p>
+            </div>
+            <div class="card">
+                <img src="Assets/person2.png" alt="Person 2">
+                <h2>Jane Smith</h2>
+                <p>"I loved how easy it was to book a hotel. The customer support was very helpful and I had a wonderful stay thanks to LetsFly."</p>
+            </div>
+            <div class="card">
+                <img src="Assets/person3.png" alt="Person 3">
+                <h2>Emily Johnson</h2>
+                <p>"Renting a car was hassle-free and I got a great rate. I highly recommend LetsFly for all travel needs."</p>
+            </div>
         </div>
-        <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.0/build/spline-viewer.js"></script>
-        <spline-viewer id="spline-viewer" url="https://prod.spline.design/wxhjb52PbBzJJlKD/scene.splinecode"></spline-viewer>
-        <div class="tooltip" id="tooltip"></div>
-    </div>
+    </main>
 
-    <div class="cards-container">
-        <div class="card">
-            <img src="person1.jpg" alt="Person 1">
-            <h2>John Doe</h2>
-            <p>Software Engineer</p>
-            <p>John is a skilled software engineer with over 5 years of experience in full-stack development.</p>
+    <footer class="footer">
+        <div class="footer-left">
+            <a class="footer-logo" href="#">LetsFly</a>
+            <a href="#">About Us</a>
+            <a href="#">Contact Us</a>
         </div>
-        <div class="card">
-            <img src="person2.jpg" alt="Person 2">
-            <h2>Jane Smith</h2>
-            <p>Product Manager</p>
-            <p>Jane is a talented product manager with a passion for creating user-centric products.</p>
+        <div class="footer-right">
+            <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="#"><i class="fa-brands fa-twitter"></i></a>
+            <a href="#"><i class="fa fa-envelope"></i></a>
+            <a href="#"><i class="fa fa-phone"></i></a>
         </div>
-        <div class="card">
-            <img src="person3.jpg" alt="Person 3">
-            <h2>Emily Johnson</h2>
-            <p>UX Designer</p>
-            <p>Emily is a creative UX designer focused on improving user experiences.</p>
-        </div>
-        <div class="card">
-            <img src="person4.jpg" alt="Person 4">
-            <h2>Michael Brown</h2>
-            <p>Data Scientist</p>
-            <p>Michael specializes in data analysis and machine learning algorithms.</p>
-        </div>
-    </div>
+    </footer>
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
@@ -78,32 +87,33 @@
             const viewer = document.getElementById('spline-viewer');
             const tooltip = document.getElementById('tooltip');
 
-            viewer.addEventListener('mouseenter', function(event) {
-                if (event.target.id === 'your-airplane-id') {
-                    tooltip.style.display = 'block';
-                    tooltip.innerHTML = `
-                        <strong>Flight Details:</strong><br>
-                        Flight Number: AB123<br>
-                        Departure: XYZ Airport<br>
-                        Arrival: ABC Airport<br>
-                        Time: 10:00 AM - 1:00 PM
-                    `;
-                }
-            });
+viewer.addEventListener('mouseenter', function(event) {
+    if (event.target.id === 'your-airplane-id') {
+        tooltip.style.display = 'block';
+        tooltip.innerHTML = `
+            <strong>Flight Details:</strong><br>
+            Flight Number: AB123<br>
+            Departure: XYZ Airport<br>
+            Arrival: ABC Airport<br>
+            Time: 10:00 AM - 1:00 PM
+        `;
+    }
+});
 
-            viewer.addEventListener('mousemove', function(event) {
-                if (tooltip.style.display === 'block') {
-                    tooltip.style.left = `${event.clientX + 10}px`;
-                    tooltip.style.top = `${event.clientY + 10}px`;
-                }
-            });
+viewer.addEventListener('mousemove', function(event) {
+    if (tooltip.style.display === 'block') {
+        tooltip.style.left = `${event.clientX + 10}px`;
+        tooltip.style.top = `${event.clientY + 10}px`;
+    }
+});
 
-            viewer.addEventListener('mouseleave', function(event) {
-                if (event.target.id === 'your-airplane-id') {
-                    tooltip.style.display = 'none';
-                }
-            });
-        });
-    </script>
+viewer.addEventListener('mouseleave', function(event) {
+    if (event.target.id === 'your-airplane-id') {
+        tooltip.style.display = 'none';
+    }
+});
+});
+</script>
 </body>
 </html>
+
