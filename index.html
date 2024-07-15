@@ -3,9 +3,107 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="home.css">
+    <title>JourneyJOy</title>
+    
 </head>
 <body>
-    hello world
+    <header>
+        <h1>ABBAS' Airport</h1>
+    </header>
+    
+    <nav>
+        <a href="#">Home</a>
+        <a href="#">Flights</a>
+        <a href="#">Hotels</a>
+        <a href="#">Taxis</a>
+        <a href="#">Contact</a>
+    </nav>
+
+    <div class="spline-container">
+        <div class="overlay">
+            <h1 class="overlay-text" id="welcome-text"></h1>
+            <button class="overlay-btn" id="btn-flights">Search Flights Everywhere</button>
+        </div>
+        <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.0/build/spline-viewer.js"></script>
+        <spline-viewer id="spline-viewer" url="https://prod.spline.design/wxhjb52PbBzJJlKD/scene.splinecode"></spline-viewer>
+        <div class="tooltip" id="tooltip"></div>
+    </div>
+
+    <div class="cards-container">
+        <div class="card">
+            <img src="person1.jpg" alt="Person 1">
+            <h2>John Doe</h2>
+            <p>Software Engineer</p>
+            <p>John is a skilled software engineer with over 5 years of experience in full-stack development.</p>
+        </div>
+        <div class="card">
+            <img src="person2.jpg" alt="Person 2">
+            <h2>Jane Smith</h2>
+            <p>Product Manager</p>
+            <p>Jane is a talented product manager with a passion for creating user-centric products.</p>
+        </div>
+        <div class="card">
+            <img src="person3.jpg" alt="Person 3">
+            <h2>Emily Johnson</h2>
+            <p>UX Designer</p>
+            <p>Emily is a creative UX designer focused on improving user experiences.</p>
+        </div>
+        <div class="card">
+            <img src="person4.jpg" alt="Person 4">
+            <h2>Michael Brown</h2>
+            <p>Data Scientist</p>
+            <p>Michael specializes in data analysis and machine learning algorithms.</p>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const text = "Welcome to Journey Joy International Airport";
+            const textElement = document.getElementById("welcome-text");
+            let index = 0;
+
+            function typeWriter() {
+                if (index < text.length) {
+                    textElement.innerHTML += text.charAt(index);
+                    index++;
+                    setTimeout(typeWriter, 100); // Adjust typing speed here
+                }
+            }
+
+            typeWriter();
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const viewer = document.getElementById('spline-viewer');
+            const tooltip = document.getElementById('tooltip');
+
+            viewer.addEventListener('mouseenter', function(event) {
+                if (event.target.id === 'your-airplane-id') {
+                    tooltip.style.display = 'block';
+                    tooltip.innerHTML = `
+                        <strong>Flight Details:</strong><br>
+                        Flight Number: AB123<br>
+                        Departure: XYZ Airport<br>
+                        Arrival: ABC Airport<br>
+                        Time: 10:00 AM - 1:00 PM
+                    `;
+                }
+            });
+
+            viewer.addEventListener('mousemove', function(event) {
+                if (tooltip.style.display === 'block') {
+                    tooltip.style.left = `${event.clientX + 10}px`;
+                    tooltip.style.top = `${event.clientY + 10}px`;
+                }
+            });
+
+            viewer.addEventListener('mouseleave', function(event) {
+                if (event.target.id === 'your-airplane-id') {
+                    tooltip.style.display = 'none';
+                }
+            });
+        });
+    </script>
 </body>
 </html>
