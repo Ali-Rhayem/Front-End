@@ -3,7 +3,7 @@ document.getElementById("TaxiForm").addEventListener("submit", function(event) {
     const formData = new FormData(this);
     axios
       .post(
-        "http://localhost/FlightManagementSystem/Taxi/create.php",
+        "http://localhost/flight-full-stack/Back-End/Taxi/create.php",
         formData
       )
       .then(function(response) {

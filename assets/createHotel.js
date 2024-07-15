@@ -6,7 +6,7 @@ form.addEventListener("submit", function (event) {
   const formData = new FormData(form);
   axios
     .post(
-      "http://localhost/FlightManagementSystem/Hotels/create.php",
+      "http://localhost/flight-full-stack/Back-End/Hotels/create.php",
       formData
     )
     .then((response) => {
