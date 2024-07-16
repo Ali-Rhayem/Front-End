@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="airport.css">
+
+    <title>Airport</title>
+</head>
+<body>
+    <header>
+        <div class="Navbar">
+            <a class="logo" href="#">LetsFly</a>
+            <div class="nav_items">
+                <a href="#">Flights</a>
+                <a href="#">Hotels</a>
+                <a href="#">Taxis</a>
+                <a href="#">Contact</a>
+            </div>
+        </div>
+    </header>
+    <div id="section1">
+        <h1>Welcome to the Airport</h1>
+        <p>Explore the airport in 3D by clicking below.</p>
+        <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.0/build/spline-viewer.js"></script>
+        <spline-viewer id="splineViewer" url="https://prod.spline.design/WW1A-EYkgFjW1rE6/scene.splinecode"></spline-viewer>
+    </div>
+    <div id="section2" class="parallax">
+        <div class="card">
+            <img src="assets/city.jpg" alt="City 1">
+            <div class="card-content">
+                <h3>City 1</h3>
+                <p>Description of City 1.</p>
+            </div>
+        </div>
+        <div class="card">
+            <img src="assets/city1.jpg" alt="City 2">
+            <div class="card-content">
+                <h3>City 2</h3>
+                <p>Description of City 2.</p>
+            </div>
+        </div>
+        <div class="card">
+            <img src="assets/city2.jpg" alt="City 3">
+            <div class="card-content">
+                <h3>City 3</h3>
+                <p>Description of City 3.</p>
+            </div>
+        </div>
+        <div class="card">
+            <img src="assets/city1.jpg" alt="City 4">
+            <div class="card-content">
+                <h3>City 4</h3>
+                <p>Description of City 4.</p>
+            </div>
+        </div>
+    </div>
+    <div id="details">
+        <button class="close-button" onclick="closeDetails()">X</button>
+        <h2>Airport Details</h2>
+        <p>This section contains details about the airport...</p>
+    </div>
+    <script>
+        const splineViewer = document.getElementById('splineViewer');
+        const detailsDiv = document.getElementById('details');
+
+        splineViewer.addEventListener('click', () => {
+            detailsDiv.style.display = 'block';
+        });
+
+        function closeDetails() {
+            detailsDiv.style.display = 'none';
+        }
+
+        // Scroll animation for cards
+        window.addEventListener('scroll', () => {
+            const cards = document.querySelectorAll('.card');
+            const triggerBottom = window.innerHeight / 5 * 4;
+
+            cards.forEach(card => {
+                const cardTop = card.getBoundingClientRect().top;
+                if (cardTop < triggerBottom) {
+                    card.style.transform = 'translateY(0)';
+                    card.style.opacity = '1';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

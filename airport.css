@@ -1,0 +1,131 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    overflow-x: hidden;
+    perspective: 1px;
+}
+header {
+    background-color: #008080;
+    width: 100%;
+    padding: 0 20px;
+}
+.Navbar {
+    height: 70px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    overflow: hidden;
+}
+
+.Navbar .logo {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 1.5rem;
+    font-weight: bold;
+    font-family: 'Imperial Script', cursive;
+}
+
+.nav_items {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+    gap: 20px;
+    flex-wrap: wrap; 
+}
+
+.Navbar a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 1rem;
+}
+.parallax {
+    position: relative;
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+}
+#section1 {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #026986;
+    color: white;
+    text-align: center;
+}
+#section1 h1 {
+    margin: 0;
+    font-size: 3em;
+}
+#section1 p {
+    font-size: 1.2em;
+}
+#splineViewer {
+    width: 100%;
+    height: 400px;
+    margin-top: px;
+}
+#section2 {
+    /* background-color: #f0f0f0; */
+    background: linear-gradient(to top, #f0f0f0 70%, #026986 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 10px 0;
+    height: 100vh;
+}
+.card {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin: 20px;
+    width: 300px;
+    overflow: hidden;
+    text-align: center;
+    transform: translateY(100px);
+    opacity: 0;
+    transition: transform 1s ease-out, opacity 1s ease-out;
+}
+.card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+.card-content {
+    padding: 20px;
+}
+.card-content h3 {
+    margin: 0;
+    color: #026986;
+}
+.card-content p {
+    margin: 10px 0 0;
+    color: #333;
+}
+#details {
+    display: none;
+    background-color: rgba(255, 255, 255, 0.9);
+    border: 2px solid #026986;
+    border-radius: 10px;
+    padding: 20px;
+    position: absolute;
+    top: 20%;
+    left: 80%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+.close-button {
+    background-color: #026986;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    float: right;
+    border-radius: 50%;
+}
