@@ -25,8 +25,7 @@
             <div class="form-container">
                 <h2>Check In</h2>
                 <form id="bookingForm">
-                    <input type="hidden" id="user_id">
-                    <input type="hidden" id="taxi_id">
+                   
                     
                     <div class="form-group">
                         <label for="checkin1">Taxi Name:</label>
@@ -68,42 +67,65 @@
 
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script>
+        
         document.addEventListener('DOMContentLoaded', function () {
-            const urlParams = new URLSearchParams(window.location.search);
-            const userId = urlParams.get('user_id');
-            const taxiId = urlParams.get('taxi_id');
+    const userId = sessionStorage.getItem('userId');
+    const taxiId = sessionStorage.getItem('selectedTaxiId');
 
-            document.getElementById('user_id').value = userId;
-            document.getElementById('taxi_id').value = taxiId;
-
-            // Fetch taxi details using taxiId if needed and populate the form fields
-            
-            document.getElementById('confirmBookingBtn').addEventListener('click', function() {
-                const user_id = document.getElementById('user_id').value;
-                const taxi_id = document.getElementById('taxi_id').value;
-                const pickup_location = document.getElementById('checkin2').value;
-                const dropoff_location = document.getElementById('checkin3').value;
-                const pickup_date = document.getElementById('checkin5').value;
-
-                axios.post('/book-taxi.php', {
-                    user_id: user_id,
-                    taxi_id: taxi_id,
-                    pickup_location: pickup_location,
-                    dropoff_location: dropoff_location,
-                    pickup_date: pickup_date
-                })
-                .then(function (response) {
-                    if (response.data.status === "success") {
-                        alert('Booking confirmed!');
-                    } else {
-                        alert('Error: ' + response.data.error);
-                    }
-                })
-                .catch(function (error) {
-                    console.error('There was an error!', error);
-                });
+    function fetchAndPopulateTaxiDetails(taxiId) {
+        axios.get('http://localhost/flight-full-stack/Back-End/Taxi/readAll.php')
+            .then(function (response) {
+                const taxis = response.data.taxi;
+                const selectedTaxi = taxis.find(taxi => taxi.taxi_id == taxiId);
+                
+                if (selectedTaxi) {
+                    document.getElementById('checkin1').value = selectedTaxi.name;
+                } else {
+                    console.error('Taxi with ID ${taxiId} not found.');
+                }
+            })
+            .catch(function (error) {
+                console.error('Error fetching taxi details:', error);
             });
-        });
+    }
+
+    fetchAndPopulateTaxiDetails(taxiId);
+
+    document.getElementById('confirmBookingBtn').addEventListener('click', function() {
+        const pickup_location = document.getElementById('checkin2').value;
+        const dropoff_location = document.getElementById('checkin3').value;
+        const pickup_date = document.getElementById('checkin5').value;
+
+        const bookingData = {
+            user_id: userId,
+            taxi_id: taxiId,
+            pickup_location: pickup_location,
+            dropoff_location: dropoff_location,
+            pickup_date: pickup_date
+        };
+
+        console.log('Booking Data:', bookingData);
+
+        axios.post('http://localhost/flight-full-stack/Back-End/Taxi_Bookings/create.php', bookingData, {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(function (response) {
+            console.log('Response:', response);
+            if (response.data.status === "success") {
+                alert('Booking confirmed!');
+                window.location.href = 'DisplayHotels.html';
+            } else {
+                alert('Error: ' + response.data.error);
+            }
+        })
+        .catch(function (error) {
+            console.error('There was an error!', error);
+        });
+    });
+});
+
     </script>
 </body>
 </html>
