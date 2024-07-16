@@ -45,7 +45,7 @@ header {
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
-    height: 100vh;
+    height: 80vh;
 }
 #section1 {
     height: 100vh;
@@ -60,6 +60,7 @@ header {
 #section1 h1 {
     
     margin: 0;
+    top: 10px;
     font-size: 3em;
     color: black;
 }
@@ -67,19 +68,22 @@ header {
     font-size: 1.2em;
     color: rgba(0, 0, 0, 0.54);
 }
-#splineViewer {
-    width: 100%;
+#section1 #splineViewer {
+    width: 80%;
     height: 400px;
-    margin-top: px;
+    margin-top: 10px;
     overflow: hidden;
+    border-radius: 40px;
+    
 }
 #section2 {
     /* background-color: #f0f0f0; */
-    background: linear-gradient(to top, #f0f0f0 70%, #026986 100%);
+    /* background: linear-gradient(to top, #f0f0f0 70%, #026986 100%); */
     display: flex;
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
+    margin-top: -120px ;
     padding: 10px 0;
     height: 100vh;
     
@@ -119,8 +123,8 @@ header {
     border-radius: 10px;
     padding: 20px;
     position: absolute;
-    top: 20%;
-    left: 80%;
+    top: 28%;
+    left: 70%;
     transform: translate(-50%, -50%);
     width: 300px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
@@ -136,7 +140,33 @@ header {
 }
 
 .airplane{
+    bottom: 10%;
     height: 30vh;
     width: 100vw;
-    z-index: 10;
+    /* z-index: 10; */
+    width: 80%;
+}
+.module-design{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80%;
+
+}
+.way{
+    width: 250px;
+    height: 250px;
+    position: absolute;
+    right: 200px;
+    position: absolute;
+    right:200px;
+}
+.way1{
+    width: 140px;
+    height: 90px;
+    position: absolute;
+    left: 320px;
+    top: 150px;
+    
+    z-index: 2;
 }
