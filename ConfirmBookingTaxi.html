@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LetsFly</title>
+    <link rel="stylesheet" href="styles/ConfirmBooking.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="Navbar">
+            <a class="logo" href="#">LetsFly</a>
+            <div class="nav_items">
+                <a href="#">Flights</a>
+                <a href="#">Hotels</a>
+                <a href="#">Taxis</a>
+                <a href="#">Contact</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="main">
+        <div class="content">
+            <div class="form-container">
+                <h2>Check In</h2>
+                <form id="bookingForm">
+                    <input type="hidden" id="user_id">
+                    <input type="hidden" id="taxi_id">
+                    
+                    <div class="form-group">
+                        <label for="checkin1">Taxi Name:</label>
+                        <input type="text" id="checkin1" placeholder="Write here..." readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="checkin2">Pick up location:</label>
+                        <input type="text" id="checkin2" placeholder="Write here...">
+                    </div>
+                    <div class="form-group">
+                        <label for="checkin3">Drop off location:</label>
+                        <input type="text" id="checkin3" placeholder="Write here...">
+                    </div>
+                    <div class="form-group">
+                        <label for="checkin5">Pickup Date:</label>
+                        <input type="datetime-local" id="checkin5" placeholder="Write here...">
+                    </div>
+                    <div class="form-group">
+                        <button type="button" id="confirmBookingBtn">Confirm Booking</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-left">
+            <a class="footer-logo" href="#">LetsFly</a>
+            <a href="#">About Us</a>
+            <a href="#">Contact Us</a>
+        </div>
+        <div class="footer-right">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fa fa-envelope"></i></a>
+            <a href="#"><i class="fa fa-phone"></i></a>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const urlParams = new URLSearchParams(window.location.search);
+            const userId = urlParams.get('user_id');
+            const taxiId = urlParams.get('taxi_id');
+
+            document.getElementById('user_id').value = userId;
+            document.getElementById('taxi_id').value = taxiId;
+
+            // Fetch taxi details using taxiId if needed and populate the form fields
+            
+            document.getElementById('confirmBookingBtn').addEventListener('click', function() {
+                const user_id = document.getElementById('user_id').value;
+                const taxi_id = document.getElementById('taxi_id').value;
+                const pickup_location = document.getElementById('checkin2').value;
+                const dropoff_location = document.getElementById('checkin3').value;
+                const pickup_date = document.getElementById('checkin5').value;
+
+                axios.post('/book-taxi.php', {
+                    user_id: user_id,
+                    taxi_id: taxi_id,
+                    pickup_location: pickup_location,
+                    dropoff_location: dropoff_location,
+                    pickup_date: pickup_date
+                })
+                .then(function (response) {
+                    if (response.data.status === "success") {
+                        alert('Booking confirmed!');
+                    } else {
+                        alert('Error: ' + response.data.error);
+                    }
+                })
+                .catch(function (error) {
+                    console.error('There was an error!', error);
+                });
+            });
+        });
+    </script>
+</body>
+</html>

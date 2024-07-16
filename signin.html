@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SignIp</title>
+    <title>SignIn</title>
     <link rel="stylesheet" href="styles/style.css">
 </head>
 
@@ -62,43 +62,33 @@
                 const apiUrl = 'http://localhost/flight-full-stack/Back-End/auth/signin.php';
 
                 // Data to send to the server
-                // const data = {
-                //     email: email,
-                //     password_hash: password
-                // };
-
                 const data = new FormData();
 
-                data.append("email", email)
-                data.append("password_hash", password)
-
-                console.log(data)
+                data.append("email", email);
+                data.append("password_hash", password);
 
                 // Fetch request to the API
                 fetch(apiUrl, {
                     method: 'POST',
-                    headers: {
-                        // 'Content-Type': 'application/json',
-
-                        // Add any additional headers if needed
-                    },
                     body: data
                 })
                     .then(response => response.json())
-
                     .then(data => {
                         // Handle API response
                         console.log('API Response:', data);
                         if (data.status) {
-                            // Handle successful sign-in (e.g., redirect to dashboard)
-                            window.location.href = './Admin/admin.html';
+                            // Store user ID in localStorage
+                            localStorage.setItem('user_id', data.user_id);
+
+                            // Redirect to DisplayTaxis.html
+                            window.location.href = 'DisplayTaxis.html';
                         } else {
                             // Handle authentication failure (e.g., display error message)
                             alert('Authentication failed. Please check your credentials.');
                         }
                     })
                     .catch(error => {
-                        console.log('Error:', error)
+                        console.error('Error:', error);
                         // Handle any errors that occur during the fetch request
                     });
             });
