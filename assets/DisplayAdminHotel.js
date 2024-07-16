@@ -29,44 +29,44 @@ document.addEventListener('DOMContentLoaded', function() {
                             <div>${starsHtml}</div>
                             <div class="buttonContainer">
                                 <p>${hotel.available_rooms} rooms left</p>
-                                <button class="BookButton">
+                                <button class="BookButton" data-hotel-id="${hotel.hotel_id}">
                                     Edit <i class="fa-solid fa-arrow-right-long"></i>
                                 </button>
                             </div>
                         </div>
-<<<<<<< HEAD
-                    `; 
-=======
                     `;
-
->>>>>>> 7f25124b117d7e70d7a001b18bdb534229494fdb
                     const deleteIcon = hotelDiv.querySelector('.delete');
 
                     deleteIcon.addEventListener('click', async function() {
-                        const hotelId = deleteIcon.getAttribute('data-hotel-id');
-<<<<<<< HEAD
-                      
-=======
->>>>>>> 7f25124b117d7e70d7a001b18bdb534229494fdb
+                        const id = deleteIcon.getAttribute('data-hotel-id');
                         try {
                             const deleteResponse = await axios.post(
                                 'http://localhost/flight-full-stack/Back-End/Hotels/delete.php',
-                                { id: hotelId },
+                                { id: id },
                                 { headers: { 'Content-Type': 'application/json' } }
                             );
-<<<<<<< HEAD
-                            hotelDiv.remove();
-=======
                             if (deleteResponse.data.message) {
+                               
                                 hotelDiv.remove();
                             } else {
-                                console.error('Failed to delete hotel:', deleteResponse.data.error);
+                                console.error('Failed to delete hotel:', deleteResponse.data.message);
                             }
->>>>>>> 7f25124b117d7e70d7a001b18bdb534229494fdb
                         } catch (error) {
-                            console.error('Error deleting hotel:', error);
+                            console.error('Error:', error.response ? error.response.data : error.message);
                         }
+                        
                     });
+                    
+
+
+
+                    // Add event listener for the BookButton
+                    const bookButton = hotelDiv.querySelector('.BookButton');
+                    bookButton.addEventListener('click', function() {
+                        const hotelId = bookButton.getAttribute('data-hotel-id');
+                        window.location.href = `Admin/admin.html?id=${hotelId}`; 
+                    });
+
                     hotelsContainer.appendChild(hotelDiv);
                 });
             } else {
@@ -76,6 +76,5 @@ document.addEventListener('DOMContentLoaded', function() {
             console.error('Error fetching hotels:', error);
         }
     }
-
     fetchHotels();
 });
