@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             <div>${starsHtml}</div>
                             <div class="buttonContainer">
                                 <p>${hotel.available_rooms} rooms left</p>
-                                <button class="BookButton">
+                                <button class="BookButton" data-hotel-id="${hotel.hotel_id}">
                                     Edit <i class="fa-solid fa-arrow-right-long"></i>
                                 </button>
                             </div>
@@ -55,6 +55,13 @@ document.addEventListener('DOMContentLoaded', function() {
                             console.error('Error deleting hotel:', error);
                         }
                     });
+
+                    const editButton = hotelDiv.querySelector('.BookButton');
+                    editButton.addEventListener('click', function() {
+                        const hotelId = editButton.getAttribute('data-hotel-id');
+                        window.location.href = `Admin/admin.html?hotelId=${hotelId}`; 
+                    });
+
                     hotelsContainer.appendChild(hotelDiv);
                 });
             } else {

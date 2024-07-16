@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', function() {
                                     <div class="left">${starsHtml}</div>
                                     <div class="right">
                                         <i class="fa-solid fa-x delete" data-taxi-id="${taxi.taxi_id}"></i>
-                                        <button class="BookButton">
+                                        <button class="BookButton" data-taxi-id="${taxi.taxi_id}">
                                             Edit <i class="fa-solid fa-arrow-right-long"></i>
                                         </button>
                                     </div>
@@ -39,7 +39,6 @@ document.addEventListener('DOMContentLoaded', function() {
                     `;
 
                     const deleteIcon = taxiDiv.querySelector('.delete');
-
                     deleteIcon.addEventListener('click', async function() {
                         const taxiId = deleteIcon.getAttribute('data-taxi-id');
                         try {
@@ -57,6 +56,13 @@ document.addEventListener('DOMContentLoaded', function() {
                             console.error('Error deleting taxi:', error);
                         }
                     });
+
+                    const editButton = taxiDiv.querySelector('.BookButton');
+                    editButton.addEventListener('click', function() {
+                        const taxiId = editButton.getAttribute('data-taxi-id');
+                        window.location.href = `Admin/admin.html?taxiId=${taxiId}`; 
+                    });
+
                     taxisContainer.appendChild(taxiDiv);
                 });
             } else {
