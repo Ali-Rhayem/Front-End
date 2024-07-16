@@ -35,13 +35,13 @@
             </div>
 
             <div class="img-icon">
-                <img src="assets/facebook.png">
-                <img src="assets/google.png">
-                <img src="assets/apple.png">
+                <img src="assets/facebook.png" alt="Facebook">
+                <img src="assets/google.png" alt="Google">
+                <img src="assets/apple.png" alt="Apple">
             </div>
         </div>
         <div class="container-img">
-            <img class="plane-img" src="assets/plane.png">
+            <img class="plane-img" src="assets/plane.png" alt="Plane">
         </div>
     </div>
     <script>
@@ -73,17 +73,18 @@
                         console.log('API Response:', data);
 
                         if (data.status) {
+                            sessionStorage.setItem('userId', data.user_id);
                             // Check the exact structure of the response
-                            console.log('User ID:', data.user_id);
+                            const userRole = data.role;
 
-                            if (data.user_id) {
-                                // Store user ID in sessionStorage
-                                sessionStorage.setItem('userId', data.user_id);
-                                // Redirect to DisplayTaxis.html
-                                window.location.href = 'DisplayTaxis.html';
+                            if (userRole === '1') {
+                                // Redirect to admin.html
+                                window.location.href = 'Admin/admin.html';
+                            } else if (userRole === '0') {
+                                // Redirect to displayflight.html
+                                window.location.href = 'DisplayFlights.html';
                             } else {
-                                console.error('User ID is missing in the response');
-                                alert('Authentication failed. Please check your credentials.');
+                                alert('Invalid user role');
                             }
                         } else {
                             // Handle authentication failure (e.g., display error message)
@@ -93,6 +94,7 @@
                     .catch(error => {
                         console.error('Error:', error);
                         // Handle any errors that occur during the fetch request
+                        alert('An error occurred. Please try again later.');
                     });
             });
         });
