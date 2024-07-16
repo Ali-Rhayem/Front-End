@@ -81,7 +81,7 @@
                 if (selectedTaxi) {
                     document.getElementById('checkin1').value = selectedTaxi.name;
                 } else {
-                    console.error('Taxi with ID ${taxiId} not found.');
+                    console.error(`Taxi with ID ${taxiId} not found.`);
                 }
             })
             .catch(function (error) {
@@ -122,9 +122,10 @@
         })
         .catch(function (error) {
             console.error('There was an error!', error);
-        });
-    });
+        });
+    });
 });
+
 
     </script>
 </body>

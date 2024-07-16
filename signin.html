@@ -20,21 +20,18 @@
                     <input id="email" name="email" placeholder="enter your email">
                 </div>
 
-
                 <div class="pass-inp">
                     <label for="password">Password:</label>
-                    <input id="password" name="password" placeholder="enter your password">
+                    <input type="password" id="password" name="password" placeholder="enter your password">
                 </div>
                 <div class="btn">
-                    <button class="signin">Sign In</button>
+                    <button type="submit" class="signin">Sign In</button>
                 </div>
-
             </form>
             <div class="hr-txt">
                 <hr>
                 <h3>OR</h3>
                 <hr>
-
             </div>
 
             <div class="img-icon">
@@ -46,7 +43,6 @@
         <div class="container-img">
             <img class="plane-img" src="assets/plane.png">
         </div>
-
     </div>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
@@ -63,7 +59,6 @@
 
                 // Data to send to the server
                 const data = new FormData();
-
                 data.append("email", email);
                 data.append("password_hash", password);
 
@@ -76,11 +71,20 @@
                     .then(data => {
                         // Handle API response
                         console.log('API Response:', data);
+
                         if (data.status) {
-                            // Store user ID in localStorage
-                            sessionStorage.setItem('userId', data.user_id);
-                            // Redirect to DisplayTaxis.html
-                            window.location.href = 'DisplayTaxis.html';
+                            // Check the exact structure of the response
+                            console.log('User ID:', data.user_id);
+
+                            if (data.user_id) {
+                                // Store user ID in sessionStorage
+                                sessionStorage.setItem('userId', data.user_id);
+                                // Redirect to DisplayTaxis.html
+                                window.location.href = 'DisplayTaxis.html';
+                            } else {
+                                console.error('User ID is missing in the response');
+                                alert('Authentication failed. Please check your credentials.');
+                            }
                         } else {
                             // Handle authentication failure (e.g., display error message)
                             alert('Authentication failed. Please check your credentials.');

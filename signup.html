@@ -26,7 +26,7 @@
                 </div>
                 <div class="pass-inp">
                     <label for="password">Set your password:</label>
-                    <input id="password" name="password" placeholder="enter your password">
+                    <input id="password" name="password" type="password" placeholder="enter your password">
                 </div>
                 <button class="signin" type="submit">Sign Up</button>
             </form>
@@ -65,7 +65,7 @@
                     console.log(response.data);
                     form.reset();
                     toastr.success('User registered successfully!');
-                    window.location.href = './Admin/admin.html';
+                    // window.location.href = './Admin/admin.html';
                 })
                 .catch(error => {
                     console.error(error);
