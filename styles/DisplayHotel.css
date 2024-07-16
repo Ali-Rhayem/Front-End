@@ -7,6 +7,7 @@
 body {
     font-family: "Lato", sans-serif;
     color: #2F4F4F;
+    margin: 0;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
@@ -50,6 +51,7 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
 }
 
 #hotels-container {
@@ -62,7 +64,8 @@ main {
 .hotel {
     box-shadow: 0 0 10px 4px rgba(0, 0, 0, 0.2);
     padding: 1%;
-    margin-bottom: 2%;
+    margin-top: 10px;
+    margin-bottom: 10px;
     border-radius: 15px;
     width: 50%;
     display: flex;
@@ -128,10 +131,6 @@ main {
     font-size: 1.85rem;
     margin: 0;
 }
-<<<<<<< HEAD
-.delete{
-    color:red;
-=======
 
 .footer {
     background-color: #008080;
@@ -165,5 +164,8 @@ main {
     display: flex;
     align-items: center;
     margin-right: 20px;
->>>>>>> 140fee63f76aa81d0ae5f000371c0b515d67565e
+}
+
+.delete {
+    color: red;
 }
