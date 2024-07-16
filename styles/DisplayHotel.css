@@ -128,10 +128,6 @@ main {
     font-size: 1.85rem;
     margin: 0;
 }
-<<<<<<< HEAD
-.delete{
-    color:red;
-=======
 
 .footer {
     background-color: #008080;
@@ -165,5 +161,7 @@ main {
     display: flex;
     align-items: center;
     margin-right: 20px;
->>>>>>> 140fee63f76aa81d0ae5f000371c0b515d67565e
+}
+.delete{
+    color:red;
 }
