@@ -3,9 +3,8 @@ async function DisplayTaxis() {
         const response = await axios.get('http://localhost/flight-full-stack/Back-End/Taxi/readAll.php');
         const data = response.data;
         const taxisContainer = document.getElementById("taxis-container");
-        
-        if (data.taxi) {
 
+        if (data.taxi) {
             data.taxi.forEach(t => {
                 const taxiDiv = document.createElement('div');
                 taxiDiv.classList.add('taxi');
@@ -25,22 +24,33 @@ async function DisplayTaxis() {
                             <p>${t.phone_number}</p>
                             <p>${t.city}, ${t.country}</p>
                              <div class="lastContainer">
-                            <div class="left">${starsHtml}</div>
-                            <div class="right">
-                            <button class="BookButton">
-                        Book Now <i class="fa-solid fa-arrow-right-long"></i>
-                        </button>
+                                <div class="left">${starsHtml}</div>
+                                <div class="right">
+                                    <button class="BookButton" data-taxi-id="${t.taxi_id}">
+                                        Book Now <i class="fa-solid fa-arrow-right-long"></i>
+                                    </button>
+                                </div>
+                            </div>
                         </div>
-                        </div>
-                        </div>
-                       
                     </div>
                 `;
+
                 taxisContainer.appendChild(taxiDiv);
+            });
+
+            // Add event listeners to Book Now buttons after they are created
+            const bookButtons = document.querySelectorAll('.BookButton');
+            bookButtons.forEach(button => {
+                button.addEventListener('click', function () {
+                    const taxiId = this.getAttribute('data-taxi-id');
+                    sessionStorage.setItem('selectedTaxiId', taxiId);
+                    window.location.href = './ConfirmBookingTaxi.html';
+                });
             });
         }
     } catch (error) {
         console.error('Error fetching taxis:', error);
     }
 }
+
 document.addEventListener('DOMContentLoaded', DisplayTaxis);
