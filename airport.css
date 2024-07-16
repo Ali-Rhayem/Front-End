@@ -53,21 +53,25 @@ header {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: #026986;
+    background-color: #ffffff;
     color: white;
     text-align: center;
 }
 #section1 h1 {
+    
     margin: 0;
     font-size: 3em;
+    color: black;
 }
 #section1 p {
     font-size: 1.2em;
+    color: rgba(0, 0, 0, 0.54);
 }
 #splineViewer {
     width: 100%;
     height: 400px;
     margin-top: px;
+    overflow: hidden;
 }
 #section2 {
     /* background-color: #f0f0f0; */
@@ -78,6 +82,7 @@ header {
     flex-wrap: wrap;
     padding: 10px 0;
     height: 100vh;
+    
 }
 .card {
     background-color: white;
@@ -128,4 +133,10 @@ header {
     cursor: pointer;
     float: right;
     border-radius: 50%;
+}
+
+.airplane{
+    height: 30vh;
+    width: 100vw;
+    z-index: 10;
 }
