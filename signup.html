@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,51 +8,45 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
     <link rel="stylesheet" href="styles/style.css">
 </head>
+
 <body>
     <div class="container-wrapper">
         <div class="container">
-        <div class="title">Sign Up</div>
-        <div class="subtitle">Please enter your credentials</div>
-    
-        <form id="form-cont">
-            <div class="email-inp">
-                <label  for="email">Set your email:</label>
-                <input id="email" name="email" placeholder="enter your email">
-            </div>
-            <div class="username-inp">
-                <label  for="username">Set your username:</label>
-                <input id="username" name="username" placeholder="enter your username">
-            </div>
-            
-    
-            <div class="pass-inp">
-                <label for="password">Set your password:</label>
-                <input id="password" name="password" placeholder="enter your password">
-            </div>
-            <div class="btn">
-                <button class="signin" type="submit">Sign Up</button>
-            </div>
-            
-        </form>
-        <div class="hr-txt">
-            <hr>
-            <h3>OR</h3>
-            <hr>
-    
-        </div>
-    
-        <div class="img-icon">
-            <img src="assets/facebook.png">
-            <img src="assets/google.png">
-            <img src="assets/apple.png">
-        </div>
-    </div>
-    <div class="container-img">
-        <img class= "plane-img" src="assets/plane.png">
-    </div>
-    
-    </div>
+            <div class="title">Sign Up</div>
+            <div class="subtitle">Please enter your credentials</div>
 
+            <form id="form-cont">
+                <div class="email-inp">
+                    <label for="email">Set your email:</label>
+                    <input id="email" name="email" placeholder="enter your email">
+                </div>
+                <div class="username-inp">
+                    <label for="username">Set your username:</label>
+                    <input id="username" name="username" placeholder="enter your username">
+                </div>
+                <div class="pass-inp">
+                    <label for="password">Set your password:</label>
+                    <input id="password" name="password" placeholder="enter your password">
+                </div>
+                <button class="signin" type="submit">Sign Up</button>
+            </form>
+
+            <div class="hr-txt">
+                <hr>
+                <h3>OR</h3>
+                <hr>
+            </div>
+
+            <div class="img-icon">
+                <img src="assets/facebook.png" alt="Facebook">
+                <img src="assets/google.png" alt="Google">
+                <img src="assets/apple.png" alt="Apple">
+            </div>
+        </div>
+        <div class="container-img">
+            <img class="plane-img" src="assets/plane.png" alt="Plane">
+        </div>
+    </div>
 
     <!-- Include necessary scripts -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -70,6 +65,7 @@
                     console.log(response.data);
                     form.reset();
                     toastr.success('User registered successfully!');
+                    window.location.href = './Admin/admin.html';
                 })
                 .catch(error => {
                     console.error(error);
@@ -78,6 +74,5 @@
         });
     </script>
 </body>
+
 </html>
-
-

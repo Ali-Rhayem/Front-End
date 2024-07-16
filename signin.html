@@ -1,105 +1,109 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SignIp</title>
     <link rel="stylesheet" href="styles/style.css">
 </head>
-<body><div class="container-wrapper">
-    <div class="container">
-    <div class="title">Welcome back</div>
-    <div class="subtitle">Please enter your credentials</div>
 
-    <form id="form-cont">
-        <div class="email-inp">
-            <label  for="email">Email:</label>
-            <input id="email" name="email" placeholder="enter your email">
-        </div>
-        
+<body>
+    <div class="container-wrapper">
+        <div class="container">
+            <div class="title">Welcome back</div>
+            <div class="subtitle">Please enter your credentials</div>
 
-        <div class="pass-inp">
-            <label for="password">Password:</label>
-            <input id="password" name="password" placeholder="enter your password">
+            <form id="form-cont">
+                <div class="email-inp">
+                    <label for="email">Email:</label>
+                    <input id="email" name="email" placeholder="enter your email">
+                </div>
+
+
+                <div class="pass-inp">
+                    <label for="password">Password:</label>
+                    <input id="password" name="password" placeholder="enter your password">
+                </div>
+                <div class="btn">
+                    <button class="signin">Sign In</button>
+                </div>
+
+            </form>
+            <div class="hr-txt">
+                <hr>
+                <h3>OR</h3>
+                <hr>
+
+            </div>
+
+            <div class="img-icon">
+                <img src="assets/facebook.png">
+                <img src="assets/google.png">
+                <img src="assets/apple.png">
+            </div>
         </div>
-        <div class="btn">
-            <button class="signin">Sign In</button>
+        <div class="container-img">
+            <img class="plane-img" src="assets/plane.png">
         </div>
-        
-    </form>
-    <div class="hr-txt">
-        <hr>
-        <h3>OR</h3>
-        <hr>
 
     </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const signInForm = document.querySelector('#form-cont');
+            signInForm.addEventListener('submit', function (event) {
+                event.preventDefault(); // Prevent the default form submission
 
-    <div class="img-icon">
-        <img src="assets/facebook.png">
-        <img src="assets/google.png">
-        <img src="assets/apple.png">
-    </div>
-</div>
-<div class="container-img">
-    <img class= "plane-img" src="assets/plane.png">
-</div>
+                // Get user inputs
+                const email = document.getElementById('email').value;
+                const password = document.getElementById('password').value;
 
-</div>
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-    const signInForm = document.querySelector('.form-cont');
-    signInForm.addEventListener('submit', function(event) {
-        event.preventDefault(); // Prevent the default form submission
+                // API endpoint (replace with your actual API endpoint)
+                const apiUrl = 'http://localhost/flight-full-stack/Back-End/auth/signin.php';
 
-        // Get user inputs
-        const email = document.getElementById('email').value;
-        const password = document.getElementById('password').value;
+                // Data to send to the server
+                // const data = {
+                //     email: email,
+                //     password_hash: password
+                // };
 
-        // API endpoint (replace with your actual API endpoint)
-        const apiUrl = 'http://localhost/front-test/auth/signin.php';
+                const data = new FormData();
 
-        // Data to send to the server
-        // const data = {
-        //     email: email,
-        //     password_hash: password
-        // };
+                data.append("email", email)
+                data.append("password_hash", password)
 
-        const data = new FormData();
+                console.log(data)
 
-        data.append("email",email)
-        data.append("password_hash",password)
+                // Fetch request to the API
+                fetch(apiUrl, {
+                    method: 'POST',
+                    headers: {
+                        // 'Content-Type': 'application/json',
 
-        console.log(data)
+                        // Add any additional headers if needed
+                    },
+                    body: data
+                })
+                    .then(response => response.json())
 
-        // Fetch request to the API
-        fetch(apiUrl, {
-            method: 'POST',
-            headers: {
-                // 'Content-Type': 'application/json',
-
-                // Add any additional headers if needed
-            },
-            body: data
-        })
-        .then(response => response.json())
-       
-        .then(data => {
-            // Handle API response
-            console.log('API Response:', data);
-            if (data.status) {
-                // Handle successful sign-in (e.g., redirect to dashboard)
-                window.location.href = '/flights.html';
-            } else {
-                // Handle authentication failure (e.g., display error message)
-                alert('Authentication failed. Please check your credentials.');
-            }
-        })
-        .catch(error => {
-            console.log('Error:', error)
-            // Handle any errors that occur during the fetch request
+                    .then(data => {
+                        // Handle API response
+                        console.log('API Response:', data);
+                        if (data.status) {
+                            // Handle successful sign-in (e.g., redirect to dashboard)
+                            window.location.href = './Admin/admin.html';
+                        } else {
+                            // Handle authentication failure (e.g., display error message)
+                            alert('Authentication failed. Please check your credentials.');
+                        }
+                    })
+                    .catch(error => {
+                        console.log('Error:', error)
+                        // Handle any errors that occur during the fetch request
+                    });
+            });
         });
-    });
-});
-</script>
+    </script>
 </body>
+
 </html>
