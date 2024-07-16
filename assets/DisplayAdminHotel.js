@@ -16,7 +16,6 @@ document.addEventListener('DOMContentLoaded', function() {
                     for (let i = 0; i < 5 - hotel.rate; i++) {
                         starsHtml += '<i class="fa-regular fa-star emptystar"></i>';
                     }
-
                     hotelDiv.innerHTML = `
                         <div class="left">
                             <div>
@@ -35,23 +34,35 @@ document.addEventListener('DOMContentLoaded', function() {
                                 </button>
                             </div>
                         </div>
+<<<<<<< HEAD
+                    `; 
+=======
                     `;
 
+>>>>>>> 7f25124b117d7e70d7a001b18bdb534229494fdb
                     const deleteIcon = hotelDiv.querySelector('.delete');
 
                     deleteIcon.addEventListener('click', async function() {
                         const hotelId = deleteIcon.getAttribute('data-hotel-id');
+<<<<<<< HEAD
+                      
+=======
+>>>>>>> 7f25124b117d7e70d7a001b18bdb534229494fdb
                         try {
                             const deleteResponse = await axios.post(
                                 'http://localhost/flight-full-stack/Back-End/Hotels/delete.php',
                                 { id: hotelId },
                                 { headers: { 'Content-Type': 'application/json' } }
                             );
+<<<<<<< HEAD
+                            hotelDiv.remove();
+=======
                             if (deleteResponse.data.message) {
                                 hotelDiv.remove();
                             } else {
                                 console.error('Failed to delete hotel:', deleteResponse.data.error);
                             }
+>>>>>>> 7f25124b117d7e70d7a001b18bdb534229494fdb
                         } catch (error) {
                             console.error('Error deleting hotel:', error);
                         }
