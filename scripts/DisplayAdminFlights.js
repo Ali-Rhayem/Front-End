@@ -12,8 +12,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     flightDiv.innerHTML = `
                         <div class="left">
                             <div>
-                                <p class="flightName">${flight.name}</p>
-                                <p>${flight.departure_city} to ${flight.arrival_city}</p>
+                                <p class="flightName">${flight.flight_number}</p>
+                                <p>${flight.departure_airport_id} to ${flight.arrival_airport_id}</p>
                             </div>
                             <p class="price">$${flight.price}</p>
                         </div>

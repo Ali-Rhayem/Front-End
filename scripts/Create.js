@@ -1,4 +1,3 @@
-// Form submission for hotels
 const hotelForm = document.getElementById("hotelForm");
 hotelForm.addEventListener("submit", function (event) {
     event.preventDefault();
@@ -10,9 +9,13 @@ hotelForm.addEventListener("submit", function (event) {
     if (hotelId) {
         url = 'http://localhost/flight-full-stack/Back-End/Hotels/update.php';
         formData.append('id', hotelId);
-        window.location.href = '../DisplayAdminHotel.html';
     } else {
         url = 'http://localhost/flight-full-stack/Back-End/Hotels/create.php';
+    }
+
+    // Log FormData to console for debugging
+    for (let [key, value] of formData.entries()) { 
+        console.log(key, value);
     }
 
     axios.post(url, formData, { headers: { 'Content-Type': 'multipart/form-data' } })
@@ -20,12 +23,14 @@ hotelForm.addEventListener("submit", function (event) {
             console.log(response.data);
             hotelForm.reset();
             toastr.success(hotelId ? 'Hotel updated successfully!' : 'Hotel added successfully!');
+            window.location.href = '../DisplayAdminHotel.html';
         })
         .catch((error) => {
             console.error(error);
             toastr.error(hotelId ? 'Failed to update hotel' : 'Failed to add new hotel');
         });
 });
+
 
 // Form submission for taxis
 const taxiForm = document.getElementById("TaxiForm");
@@ -57,34 +62,40 @@ taxiForm.addEventListener("submit", function (event) {
 });
 
 
-// Form submission for flights
 const flightForm = document.getElementById("flightForm");
 flightForm.addEventListener("submit", function (event) {
     event.preventDefault();
 
     const formData = new FormData(flightForm);
+    const flightData = {};
+    formData.forEach((value, key) => {
+        flightData[key] = value;
+    });
+
     const flightId = document.getElementById("flightId").value;
-    
+
     let url;
     if (flightId) {
         url = 'http://localhost/flight-full-stack/Back-End/flight/update.php';
-        formData.append('id', flightId);
-        window.location.href = '../DisplayAdminFlights.html';
+        flightData.id = flightId; // Ensure the ID is included for the update operation
     } else {
         url = 'http://localhost/flight-full-stack/Back-End/flight/create.php';
     }
 
-    axios.post(url, formData, { headers: { 'Content-Type': 'multipart/form-data' } })
+    axios.post(url, JSON.stringify(flightData), { headers: { 'Content-Type': 'application/json' } })
         .then((response) => {
             console.log(response.data);
             flightForm.reset();
             toastr.success(flightId ? 'Flight updated successfully!' : 'Flight added successfully!');
+            window.location.href = '../DisplayAdminFlights.html';
         })
         .catch((error) => {
             console.error(error);
             toastr.error(flightId ? 'Failed to update flight' : 'Failed to add new flight');
         });
 });
+
+
 
 
 // Function to fetch hotel details for editing
