@@ -49,7 +49,7 @@
         <label for="hotelPricePerNight">Price per Night:</label>
         <input type="number" id="hotelPricePerNight" name="hotelPricePerNight" required placeholder="Write here..." />
     
-        <label for="hotelRate">Hotel Rate:</label>
+        <label for="hotelRate">Rate:</label>
         <input type="number" id="hotelRate" name="hotelRate" required placeholder="Write here..." />
     
         <button type="submit" id="hotelBtn">Submit</button>
@@ -74,7 +74,7 @@
   
         <label for="price_per_km">Price per Km:</label>
         <input type="number" id="price_per_km" name="price_per_km" required placeholder="Write here..." />
-        <label for="rate">Rate</label>
+        <label for="rate">Rate:</label>
         <input type="number" id="rate" name="rate" required placeholder="Write here..." />
   
         <button type="submit" id="btn">Submit</button>
@@ -101,67 +101,54 @@
         <input type="number" id="price_per_km" name="price_per_km" required placeholder="Write here..." />
         <button type="submit" id="btn">Submit</button>
       </form>
+      <form id="AirportForm">
+        <H2>Airports</H2>
+        <input type="hidden" id="airportId" name="airportId" />
+        <label for="name">Name:</label>
+        <input
+          type="text"
+          id="AirportName"
+          name="name"
+          required
+          placeholder="Write here..."
+        />
+    
+        <label for="city">City:</label>
+        <input
+          type="text"
+          id="AirportCity"
+          name="city"
+          required
+          placeholder="Write here..."
+        />
+    
+        <label for="country">Country:</label>
+        <input
+          type="text"
+          id="AirportCountry"
+          name="country"
+          required
+          placeholder="Write here..."
+        />
+    
+        <label for="code">Code:</label>
+        <input
+          type="text"
+          id="AirportCode"
+          name="code"
+          required
+          placeholder="Write here..."
+        />
+    
+        <button type="submit">Submit</button>
+      </form>
 </div>
     
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <script src="../scripts/Create.js"></script>
-    <!-- <script>
-   const HotelDetails = async () => {
-    const urlParams = new URLSearchParams(window.location.search);
-    const hotelId = urlParams.get('id');
-    console.log(hotelId);
-    try {
-        const response = await axios.get(`http://localhost/flight-full-stack/Back-End/Hotels/readOne.php?id=${hotelId}`);
-        const hotel = response.data.hotels;
-        console.log(hotel);
-        if (hotel) {
-            document.getElementById("hotelName").value = hotel.name || "";
-            document.getElementById("hotelCity").value = hotel.city || "";
-            document.getElementById("hotelCountry").value = hotel.country || "";
-            document.getElementById("hotelAddress").value = hotel.address || "";
-            document.getElementById("hotelAvailableRooms").value = hotel.available_rooms || "";
-            document.getElementById("hotelPricePerNight").value = hotel.price_per_night || "";
-            document.getElementById("hotelRate").value = hotel.rate || "";
-        } else {
-            console.error("Hotel data not found.");
-            toastr.error("Hotel data not found.");
-        }
-    } catch (error) {
-        console.error("There was an error fetching the hotel details:", error);
-        toastr.error("Failed to load hotel details.");
-    }
-    const form = document.getElementById("hotelForm");
-
-form.addEventListener("submit", function (event) {
-    event.preventDefault();
-    const formData = new FormData(form); 
-    formData.append('id', `${hotelId}`);
-    console.log(formData);
-    axios({
-        method: 'post',
-        url: 'http://localhost/flight-full-stack/Back-End/Hotels/update.php',
-        data: formData,
-        headers: {
-            'Content-Type': 'multipart/form-data'
-        }
-    })
-    .then((response) => {
-        console.log(response.data);
-        form.reset();
-        toastr.success('Hotel updated successfully!');
-    })
-    .catch((error) => {
-        console.error(error);
-        toastr.error('Failed to update hotel');
-    });
-});
-};
-
-document.addEventListener("DOMContentLoaded", HotelDetails);
-
-
-    </script> -->
+    <script src="../assets/Airport.js"></script>
+   
 </body>
 </html>
