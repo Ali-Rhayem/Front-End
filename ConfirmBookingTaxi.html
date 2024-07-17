@@ -69,11 +69,16 @@
     <script>
         
         document.addEventListener('DOMContentLoaded', function () {
+    // Get userId and taxiId from sessionStorage
     const userId = sessionStorage.getItem('userId');
     const taxiId = sessionStorage.getItem('selectedTaxiId');
 
+    // Set userId and taxiId in the hidden input fields
+   
+
+    // Function to fetch taxi details and populate form fields
     function fetchAndPopulateTaxiDetails(taxiId) {
-        axios.get('http://localhost/flight-full-stack/Back-End/Taxi/readAll.php')
+        axios.get(`http://localhost/flight-full-stack/Back-End/Taxi/readAll.php`)
             .then(function (response) {
                 const taxis = response.data.taxi;
                 const selectedTaxi = taxis.find(taxi => taxi.taxi_id == taxiId);
@@ -89,33 +94,28 @@
             });
     }
 
+    // Fetch and populate taxi details based on taxiId
     fetchAndPopulateTaxiDetails(taxiId);
 
+    // Event listener for Confirm Booking button
     document.getElementById('confirmBookingBtn').addEventListener('click', function() {
+        
         const pickup_location = document.getElementById('checkin2').value;
         const dropoff_location = document.getElementById('checkin3').value;
         const pickup_date = document.getElementById('checkin5').value;
+       
 
-        const bookingData = {
+        axios.post('http://localhost/flight-full-stack/Back-End/Taxi_Bookings/create.php', {
             user_id: userId,
             taxi_id: taxiId,
             pickup_location: pickup_location,
             dropoff_location: dropoff_location,
             pickup_date: pickup_date
-        };
-
-        console.log('Booking Data:', bookingData);
-
-        axios.post('http://localhost/flight-full-stack/Back-End/Taxi_Bookings/create.php', bookingData, {
-            headers: {
-                'Content-Type': 'application/json'
-            }
         })
         .then(function (response) {
-            console.log('Response:', response);
             if (response.data.status === "success") {
                 alert('Booking confirmed!');
-                window.location.href = 'DisplayHotels.html';
+                window.location.href = 'DisplayHotels.html'; // Redirect to another page after booking
             } else {
                 alert('Error: ' + response.data.error);
             }
