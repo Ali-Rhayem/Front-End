@@ -88,14 +88,8 @@
             // Function to fetch and display data for taxi bookings
             const fetchTaxiBookings = () => {
                 const taxiBookingDetailsBody = document.getElementById('taxiBookingDetailsBody');
-                const userId = sessionStorage.getItem('userId');
 
-
-               let fetchUrl = `http://localhost/flight-full-stack/Back-End/Taxi_Bookings/read.php?user_id=${userId}`
-
-               
-                fetch(fetchUrl)
-
+                fetch('http://localhost/flight-full-stack/Back-End/Taxi_Bookings/read.php')
                     .then(response => {
                         if (!response.ok) {
                             throw new Error('Network response was not ok');
@@ -137,14 +131,7 @@
             const fetchFlightBookings = () => {
                 const flightBookingDetailsBody = document.getElementById('flightBookingDetailsBody');
 
-                // Retrieve user_id from sessionStorage
-                const userId = sessionStorage.getItem('userId');
-
-                // Construct the fetch URL with query parameter for user_id
-                let fetchUrl = `http://localhost/flight-full-stack/Back-End/Flight_Bookings/read.php?user_id=${userId}`;
-                
-
-                fetch(fetchUrl)
+                fetch('http://localhost/flight-full-stack/Back-End/Flight-Bookings/read.php')
                     .then(response => {
                         if (!response.ok) {
                             throw new Error('Network response was not ok');
@@ -182,13 +169,8 @@
             // Function to fetch and display data for hotel bookings
             const fetchHotelBookings = () => {
                 const hotelBookingDetailsBody = document.getElementById('hotelBookingDetailsBody');
-                const userId = sessionStorage.getItem('userId');
 
-                let fetchUrl = `http://localhost/flight-full-stack/Back-End/Hotel_Bookings/read.php?user_id=${userId}`;
-
-               
-
-                fetch(fetchUrl)
+                fetch('http://localhost/flight-full-stack/Back-End/Hotel_Bookings/read.php')
                     .then(response => {
                         if (!response.ok) {
                             throw new Error('Network response was not ok');
