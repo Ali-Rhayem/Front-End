@@ -5,12 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SignIn</title>
-    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="styles/signin.css">
 </head>
 
 <body>
     <div class="container-wrapper">
-        <div class="container">
+        <div class="container" id="blur">
             <div class="title">Welcome back</div>
             <div class="subtitle">Please enter your credentials</div>
 
@@ -40,9 +40,8 @@
                 <img src="assets/apple.png" alt="Apple">
             </div>
         </div>
-        <div class="container-img">
-            <img class="plane-img" src="assets/plane.png" alt="Plane">
-        </div>
+       <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.0/build/spline-viewer.js"></script>
+       <spline-viewer url="https://prod.spline.design/0jLrXkhwDatmHBLs/scene.splinecode"></spline-viewer>
     </div>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
@@ -98,6 +97,10 @@
                     });
             });
         });
+
+        function losefocus() {
+            document.getElementById("blur").blur();
+        }
     </script>
 </body>
 

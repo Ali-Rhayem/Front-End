@@ -48,29 +48,31 @@ header {
     height: 80vh;
 }
 #section1 {
+    margin-top: 20px;
     height: 100vh;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    /* justify-content: center; */
     align-items: center;
     background-color: #ffffff;
     color: white;
     text-align: center;
+    gap: 5px;
 }
 #section1 h1 {
     
     margin: 0;
-    top: 10px;
+    top: 0px;
     font-size: 3em;
-    color: black;
-}
+    color:#008080;
+    font-family: "Lato", sans-serif;}
 #section1 p {
     font-size: 1.2em;
     color: rgba(0, 0, 0, 0.54);
 }
 #section1 #splineViewer {
     width: 80%;
-    height: 400px;
+    height: 500px;
     margin-top: 10px;
     overflow: hidden;
     border-radius: 40px;
@@ -153,21 +155,22 @@ header {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 80%;
+    width: 100%;
+    margin-right: 10px;
 
 }
 .way{
     width: 250px;
     height: 250px;
     position: absolute;
-    right: 200px;
+    /* right: 200px; */
     position: absolute;
-    right:200px;
+    right:0px;
 }
 .way1{
     width: 140px;
     height: 90px;
-    position: absolute;
+    /* position: absolute; */
     left: 320px;
     top: 150px;
     

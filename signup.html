@@ -6,12 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Registration</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
-    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="styles/signin.css">
 </head>
 
 <body>
     <div class="container-wrapper">
-        <div class="container">
+        <div class="container" class="blur">
             <div class="title">Sign Up</div>
             <div class="subtitle">Please enter your credentials</div>
 
@@ -29,11 +29,14 @@
                     <input id="password" name="password" type="password" placeholder="enter your password">
                 </div>
                 <button class="signin" type="submit">Sign Up</button>
+                
+            
             </form>
-
+                <small class="have-account">Already have an Acount ? <a href="signin.html">Login</a></small>
             <div class="hr-txt">
                 <hr>
                 <h3>OR</h3>
+
                 <hr>
             </div>
 
@@ -44,7 +47,10 @@
             </div>
         </div>
         <div class="container-img">
-            <img class="plane-img" src="assets/plane.png" alt="Plane">
+            <!-- <img class="plane-img" src="assets/plane.png" alt="Plane"> -->
+            <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.0/build/spline-viewer.js"></script>
+            <spline-viewer url="https://prod.spline.design/g9YYhOhpnR6V-E5j/scene.splinecode"></spline-viewer>
+            
         </div>
     </div>
 
@@ -72,6 +78,9 @@
                     toastr.error('Failed to register user');
                 });
         });
+        function losefocus() {
+            document.getElementById("blur").blur();
+        }
     </script>
 </body>
 

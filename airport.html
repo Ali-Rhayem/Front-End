@@ -20,10 +20,13 @@
         </div>
     </header>
     <div id="section1">
-        <h1>Welcome to the Airport</h1>
-        <p>Explore the airport in 3D by clicking below.</p>
         <div class="module-design">
-            <img src="assets/pic.png" alt="" class="way1">
+        <img src="assets/pic.png" alt="" class="way1">
+        <h1>Welcome to JourneyJoy International Airport</h1>
+        </div>
+        
+        <!-- <p>Explore the airport in 3D by clicking below.</p> -->
+        <div class="module-design"> 
             <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.0/build/spline-viewer.js"></script>
         <spline-viewer id="splineViewer" url="https://prod.spline.design/WW1A-EYkgFjW1rE6/scene.splinecode"></spline-viewer>
         <img src="assets/way.png" alt="" class="way">
@@ -35,8 +38,8 @@
     </div>
     <div id="section2" class="parallax">
         <div class="airplane">
-            <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.0/build/spline-viewer.js"></script>
-            <spline-viewer url="https://prod.spline.design/IjI4EMS5lxEZezF1/scene.splinecode"></spline-viewer>
+            <!-- <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.0/build/spline-viewer.js"></script>
+            <spline-viewer url="https://prod.spline.design/IjI4EMS5lxEZezF1/scene.splinecode"></spline-viewer> -->
         </div>
         <div class="card">
             <img src="assets/city.jpg" alt="City 1">
@@ -87,7 +90,7 @@
         // Scroll animation for cards
         window.addEventListener('scroll', () => {
             const cards = document.querySelectorAll('.card');
-            const triggerBottom = window.innerHeight / 5 * 4;
+            const triggerBottom = window.innerHeight / 0 * 4;
 
             cards.forEach(card => {
                 const cardTop = card.getBoundingClientRect().top;
