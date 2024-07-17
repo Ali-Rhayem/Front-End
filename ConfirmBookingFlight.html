@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LetsFly - Flight Booking</title>
+  <link rel="stylesheet" href="styles/create.css">
+  <link rel="stylesheet" href="styles/ConfirmBooking.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+</head>
+<body>
+    <header>
+        <div class="Navbar">
+            <a class="logo" href="#">LetsFly</a>
+            <div class="nav_items">
+                <a href="#">Flights</a>
+                <a href="#">Hotels</a>
+                <a href="#">Taxis</a>
+                <a href="#">Contact</a>
+            </div>
+        </div>
+    </header>
+    
+    <div class="main">
+        <form id="flightBookingForm" class="form-container">
+            <h2>Flight Booking</h2>
+            <input type="hidden" id="user_id" name="user_id" value="1" />
+            <input type="hidden" id="flight_id" name="flight_id" />
+            
+            <p><strong>Flight Number:</strong> <span id="flight_number"></span></p>
+            <input type="hidden" id="flight_number_input" name="flight_number" />          
+            <p><strong>Departure Time:</strong> <span id="departure_time"></span></p>
+            <input type="hidden" id="departure_time_input" name="departure_time" />
+            
+            <p><strong>Arrival Time:</strong> <span id="arrival_time"></span></p>
+            <input type="hidden" id="arrival_time_input" name="arrival_time" />
+            
+            <p><strong>Price:</strong> <span id="price"></span></p>
+            <input type="hidden" id="price_input" name="price" />
+            
+            <p><strong>Available Seats:</strong> <span id="available_seats"></span></p>
+            <input type="hidden" id="available_seats_input" name="available_seats" />
+            
+            <button type="button" id="confirmFlightBookingBtn">Submit</button>
+        </form>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-left">
+            <a class="footer-logo" href="#">LetsFly</a>
+            <a href="#">About Us</a>
+            <a href="#">Contact Us</a>
+        </div>
+        <div class="footer-right">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fa fa-envelope"></i></a>
+            <a href="#"><i class="fa fa-phone"></i></a>
+        </div>
+    </footer>
+    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const userId = sessionStorage.getItem('userId');
+            const flightId = sessionStorage.getItem('selectedFlightId');
+
+            function fetchAndPopulateFlightDetails(flightId) {
+                axios.get('http://localhost/flight-full-stack/Back-End/flight/readAll.php')
+                    .then(function (response) {
+                        const flights = response.data.flights;
+                        const selectedFlight = flights.find(flight => flight.flight_id == flightId);
+
+                        if (selectedFlight) {
+                            document.getElementById('flight_id').value = selectedFlight.flight_id;
+                            document.getElementById('flight_number').innerText = selectedFlight.flight_number;
+                            document.getElementById('flight_number_input').value = selectedFlight.flight_number;
+                            document.getElementById('departure_time').innerText = new Date(selectedFlight.departure_time).toLocaleString();
+                            document.getElementById('departure_time_input').value = selectedFlight.departure_time;
+                            document.getElementById('arrival_time').innerText = new Date(selectedFlight.arrival_time).toLocaleString();
+                            document.getElementById('arrival_time_input').value = selectedFlight.arrival_time;
+                            document.getElementById('price').innerText = `$${selectedFlight.price}`;
+                            document.getElementById('price_input').value = selectedFlight.price;
+                            document.getElementById('available_seats').innerText = selectedFlight.available_seats;
+                            document.getElementById('available_seats_input').value = selectedFlight.available_seats;
+                        } else {
+                            console.error(`Flight with ID ${flightId} not found.`);
+                        }
+                    })
+                    .catch(function (error) {
+                        console.error('Error fetching flight details:', error);
+                    });
+            }
+
+            fetchAndPopulateFlightDetails(flightId);
+
+            document.getElementById('confirmFlightBookingBtn').addEventListener('click', function() {
+
+                const bookingData = {
+                    user_id: userId,
+                    flight_id: flightId
+                };
+
+                axios.post('http://localhost/flight-full-stack/Back-End/Flight-Bookings/create.php', bookingData, {
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                })
+                .then(function (response) {
+                    if (response.data.status === "success") {
+                        alert('Booking confirmed!');
+                        window.location.href = 'DisplayHotels.html';
+                    } else {
+                        alert('Error: ' + response.data.error);
+                    }
+                })
+                .catch(function (error) {
+                    console.error('There was an error!', error);
+                });
+            });
+        });
+    </script>
+</body>
+</html>

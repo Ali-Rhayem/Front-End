@@ -20,33 +20,29 @@
                     <input id="email" name="email" placeholder="enter your email">
                 </div>
 
-
                 <div class="pass-inp">
                     <label for="password">Password:</label>
-                    <input id="password" name="password" placeholder="enter your password">
+                    <input type="password" id="password" name="password" placeholder="enter your password">
                 </div>
                 <div class="btn">
-                    <button class="signin">Sign In</button>
+                    <button type="submit" class="signin">Sign In</button>
                 </div>
-
             </form>
             <div class="hr-txt">
                 <hr>
                 <h3>OR</h3>
                 <hr>
-
             </div>
 
             <div class="img-icon">
-                <img src="assets/facebook.png">
-                <img src="assets/google.png">
-                <img src="assets/apple.png">
+                <img src="assets/facebook.png" alt="Facebook">
+                <img src="assets/google.png" alt="Google">
+                <img src="assets/apple.png" alt="Apple">
             </div>
         </div>
         <div class="container-img">
-            <img class="plane-img" src="assets/plane.png">
+            <img class="plane-img" src="assets/plane.png" alt="Plane">
         </div>
-
     </div>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
@@ -63,7 +59,6 @@
 
                 // Data to send to the server
                 const data = new FormData();
-
                 data.append("email", email);
                 data.append("password_hash", password);
 
@@ -76,11 +71,21 @@
                     .then(data => {
                         // Handle API response
                         console.log('API Response:', data);
+
                         if (data.status) {
-                            // Store user ID in localStorage
                             sessionStorage.setItem('userId', data.user_id);
-                            // Redirect to DisplayTaxis.html
-                            window.location.href = 'DisplayTaxis.html';
+                            // Check the exact structure of the response
+                            const userRole = data.role;
+
+                            if (userRole === '1') {
+                                // Redirect to admin.html
+                                window.location.href = 'Admin/admin.html';
+                            } else if (userRole === '0') {
+                                // Redirect to displayflight.html
+                                window.location.href = 'DisplayFlights.html';
+                            } else {
+                                alert('Invalid user role');
+                            }
                         } else {
                             // Handle authentication failure (e.g., display error message)
                             alert('Authentication failed. Please check your credentials.');
@@ -89,6 +94,7 @@
                     .catch(error => {
                         console.error('Error:', error);
                         // Handle any errors that occur during the fetch request
+                        alert('An error occurred. Please try again later.');
                     });
             });
         });

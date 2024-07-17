@@ -44,3 +44,8 @@ button {
 button:hover {
     background-color: #2E2E2E;
 }
+
+p{
+    align-self: flex-start;
+    margin: 10px;
+}

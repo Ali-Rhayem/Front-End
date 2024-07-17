@@ -23,13 +23,22 @@ document.addEventListener('DOMContentLoaded', function() {
                     <div class="right">
                         <div class="buttonContainer">
                             <p>${flight.available_seats} seats left</p>
-                            <button class="BookButton">
+                            <button class="BookButton" data-flight-id="${flight.flight_id}">
                                 Book Now <i class="fa-solid fa-arrow-right-long"></i>
                             </button>
                         </div>
                     </div>
                     `;
                     flightsContainer.appendChild(flightDiv);
+                });
+
+                const bookButtons = document.querySelectorAll('.BookButton');
+                bookButtons.forEach(button => {
+                    button.addEventListener('click', function () {
+                        const flightId = this.getAttribute('data-flight-id');
+                        sessionStorage.setItem('selectedFlightId', flightId);
+                        window.location.href = './ConfirmBookingFlight.html';
+                    });
                 });
             } else {
                 flightsContainer.innerHTML = `<p>${data.message}</p>`;
