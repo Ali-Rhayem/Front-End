@@ -29,13 +29,22 @@ document.addEventListener('DOMContentLoaded', function() {
                         <div>${starsHtml}</div>
                         <div class="buttonContainer">
                         <p>${hotel.available_rooms} rooms left</p>
-                        <button class="BookButton">
+                        <button class="BookButton" data-hotel-id="${hotel.hotel_id}">
                             Book Now <i class="fa-solid fa-arrow-right-long"></i>
                             </button>
                         </div>
                     </div>
                     `;
                     hotelsContainer.appendChild(hotelDiv);
+                });
+
+                const bookButtons = document.querySelectorAll('.BookButton');
+                bookButtons.forEach(button => {
+                    button.addEventListener('click', function () {
+                        const hotelId = this.getAttribute('data-hotel-id');
+                        sessionStorage.setItem('selectedHotelId', hotelId);
+                        window.location.href = './ConfirmBookingHotel.html';
+                    });
                 });
             } else {
                 hotelsContainer.innerHTML = `<p>${data.message}</p>`;
