@@ -19,6 +19,7 @@
                 <a href="../DisplayAdminHotel.html">Hotels</a>
                 <a href="../DisplayAdminTaxi.html">Cars</a>
                 <a href="../DisplayAdminUser.html">Users</a>
+                <a href="../DisplayAdminAirports.html">Airports</a>
             </div>
             <div class="nav-icons">
                 <a href="#login" class="icon">&#10132;</a>
@@ -76,20 +77,75 @@
                 <h2>Flights</h2>
                 <label for="flightNumber">Flight Number:</label>
                 <input type="text" id="flightNumber" name="flight_number" required />
-                <label for="departureAirportId">Departure Airport ID:</label>
-                <input type="text" id="departureAirportId" name="departure_airport_id" required />
-                <label for="arrivalAirportId">Arrival Airport ID:</label>
-                <input type="text" id="arrivalAirportId" name="arrival_airport_id" required />
+            
+                <label for="departureAirportId">Departure Airport:</label>
+                <select id="departureAirportId" name="departure_airport_id" required>
+                    <option value="">Select Airport</option>
+                </select>
+            
+                <label for="arrivalAirportId">Arrival Airport:</label>
+                <select id="arrivalAirportId" name="arrival_airport_id" required>
+                    <option value="">Select Airport</option>
+                </select>
+            
                 <label for="departureTime">Departure Time:</label>
                 <input type="datetime-local" id="departureTime" name="departure_time" required />
+            
                 <label for="arrivalTime">Arrival Time:</label>
                 <input type="datetime-local" id="arrivalTime" name="arrival_time" required />
+            
                 <label for="availableSeats">Available Seats:</label>
                 <input type="number" id="availableSeats" name="available_seats" required />
+            
                 <label for="price">Price:</label>
                 <input type="text" id="price" name="price" required />
+            
                 <button type="submit" id="flightBtn">Submit</button>
             </form>
+            
+            
+
+            <form id="AirportForm">
+                <H2>Airports</H2>
+                <input type="hidden" id="airportId" name="airportId" />
+                <label for="name">Name:</label>
+                <input
+                  type="text"
+                  id="AirportName"
+                  name="name"
+                  required
+                  placeholder="Write here..."
+                />
+            
+                <label for="city">City:</label>
+                <input
+                  type="text"
+                  id="AirportCity"
+                  name="city"
+                  required
+                  placeholder="Write here..."
+                />
+            
+                <label for="country">Country:</label>
+                <input
+                  type="text"
+                  id="AirportCountry"
+                  name="country"
+                  required
+                  placeholder="Write here..."
+                />
+            
+                <label for="code">Code:</label>
+                <input
+                  type="text"
+                  id="AirportCode"
+                  name="code"
+                  required
+                  placeholder="Write here..."
+                />
+            
+                <button type="submit">Submit</button>
+              </form>
         </div>
     </div>
     <footer class="footer">

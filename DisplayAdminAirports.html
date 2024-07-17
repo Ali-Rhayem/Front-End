@@ -3,23 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Taxis</title>
+    <link rel="stylesheet" href="./styles/DisplayHotel.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="./styles/DisplayTaxi.css"/>
+    <title>Hotels</title>
 </head>
 <body>
     <header>
         <div class="Navbar">
             <a class="logo" href="#">LetsFly</a>
             <div class="nav_items">
-                <a href="DisplayFlights.html">Flights</a>
-                <a href="DisplayHotels.html">Hotels</a>
-                <a href="DisplayTaxis.html">Taxis</a>
+                <a href="Admin/admin.html">Admin</a>
+                <a href="DisplayAdminFlights.html">Flights</a>
+                <a href="DisplayAdminHotel.html">Hotels</a>
+                <a href="DisplayAdminTaxi.html">Taxis</a>
+                <a href="DisplayAdminUser.html">Users</a>
+                <a href="DisplayAdminAirports.html">Airports</a>
+            </div>
+            <div class="nav-icons">
+                <a href="#login" class="icon">&#10132;</a>
+                <a href="#profile" class="icon">&#128100;</a>
             </div>
         </div>
     </header>
     <main>
-        <div id="taxis-container"></div>
+        <div id="airports-container"></div>
     </main>
     <footer class="footer">
         <div class="footer-left">
@@ -35,6 +42,6 @@
         </div>
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script src="scripts/DisplayTaxis.js"></script>
+    <script src="scripts/DisplayAdminAirport.js"></script>
 </body>
 </html>

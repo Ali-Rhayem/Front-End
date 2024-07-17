@@ -22,13 +22,13 @@ header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: #008080; /* Adjust the color to match your navbar */
+    background-color: #008080;
     padding: 0 20px;
     height: 60px;
 }
 
 .Navbar .logo {
-    font-family: 'Cursive', sans-serif; /* Ensure you have the desired font family */
+    font-family: 'Cursive', sans-serif;
     font-size: 24px;
     color: white;
 }
@@ -52,6 +52,7 @@ header {
     font-size: 24px;
 }
 
+
 main {
     flex: 1;
     padding: 20px;
@@ -60,6 +61,7 @@ main {
     align-items: center;
     justify-content: center;
 }
+
 
 #hotels-container {
     display: flex;
@@ -124,6 +126,7 @@ main {
     align-items: flex-end;
     width: 100%;
     text-align: center;
+  
 }
 
 .hotelName {
@@ -175,4 +178,20 @@ main {
 
 .delete {
     color: red;
+}
+.airport {
+    box-shadow: 0 0 10px 4px rgba(0, 0, 0, 0.2);
+    padding: 1%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: row;
+    width:50%;
+}
+#airports-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
 }

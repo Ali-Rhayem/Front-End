@@ -62,6 +62,36 @@ taxiForm.addEventListener("submit", function (event) {
 });
 
 
+document.addEventListener("DOMContentLoaded", function() {
+    const departureAirportSelect = document.getElementById("departureAirportId");
+    const arrivalAirportSelect = document.getElementById("arrivalAirportId");
+
+    function populateAirportSelect(selectElement) {
+        axios.get('http://localhost/flight-full-stack/Back-End/Airport/readAll.php')
+            .then(response => {
+                console.log('Airport data:', response.data);
+                const airports = response.data.airports; // Adjust to access the airports array
+                
+                if (Array.isArray(airports)) {
+                    airports.forEach(airport => {
+                        const option = document.createElement("option");
+                        option.value = airport.airport_id; // Adjust to use correct key for ID
+                        option.text = airport.name;
+                        selectElement.add(option);
+                    });
+                } else {
+                    console.error('Expected an array of airports but received:', airports);
+                }
+            })
+            .catch(error => {
+                console.error('Error fetching airport data:', error);
+            });
+    }
+
+    populateAirportSelect(departureAirportSelect);
+    populateAirportSelect(arrivalAirportSelect);
+});
+
 const flightForm = document.getElementById("flightForm");
 flightForm.addEventListener("submit", function (event) {
     event.preventDefault();
@@ -95,6 +125,78 @@ flightForm.addEventListener("submit", function (event) {
         });
 });
 
+
+
+const form4 = document.getElementById("AirportForm");
+
+form4.addEventListener("submit", function (event) {
+    event.preventDefault();
+
+    const formData = new FormData(form4);
+    const airportId = document.getElementById("airportId").value;
+    
+    let url;
+    if (airportId) {
+        url = `http://localhost/flight-full-stack/Back-End/Airport/update.php`;
+        formData.append('id', airportId);
+    } else {
+        url = `http://localhost/flight-full-stack/Back-End/Airport/create.php`;
+    }
+
+    axios({
+        method: 'post',
+        url: url,
+        data: formData,
+        headers: {
+            'Content-Type': 'multipart/form-data'
+        }
+    })
+    .then((response) => {
+        console.log(response.data);
+        form4.reset();
+        if (airportId) {
+            toastr.success('Airport updated successfully!');
+            window.location.href = '../DisplayAdminAirports.html';
+        } else {
+            toastr.success('Airport added successfully!');
+        }
+    })
+    .catch((error) => {
+        console.error(error);
+        if (airportId) {
+            toastr.error('Failed to update airport');
+        } else {
+            toastr.error('Failed to add new airport');
+        }
+    });
+});
+
+const AirportDetails = async () => {
+  const urlParams = new URLSearchParams(window.location.search);
+  const id = urlParams.get('id');
+  if (id) {
+      document.getElementById("airportId").value = id;
+      try {
+          const response = await axios.get(`http://localhost/flight-full-stack/Back-End/Airport/readOne.php?id=${id}`);
+          const airport = response.data.airports; 
+          console.log(airport);
+          if (airport) {
+              document.getElementById("AirportName").value = airport.name || "";
+              document.getElementById("AirportCity").value = airport.city || "";
+              document.getElementById("AirportCountry").value = airport.country || "";
+              document.getElementById("AirportCode").value = airport.code || ""; 
+          } else {
+              toastr.error("Airport data not found.");
+          }
+      } catch (error) {
+          console.error("There was an error fetching the airport details:", error);
+          toastr.error("Failed to load airport details.");
+      }
+  }
+};
+
+
+document.addEventListener("DOMContentLoaded", AirportDetails);
 
 
 
