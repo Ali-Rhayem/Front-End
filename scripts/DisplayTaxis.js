@@ -1,3 +1,16 @@
+document.getElementById('searchInput').addEventListener('input', function() {
+    const query = this.value.toLowerCase();
+    const taxiDivs = document.querySelectorAll('.taxi');
+    taxiDivs.forEach(div => {
+        const taxiName = div.querySelector('.namediv p').innerText.toLowerCase();
+        if (taxiName.includes(query)) {
+            div.style.display = 'flex';
+        } else {
+            div.style.display = 'none';
+        }
+    });
+});
+
 async function DisplayTaxis() {
     try {
         const response = await axios.get('http://localhost/flight-full-stack/Back-End/Taxi/readAll.php');
@@ -34,11 +47,10 @@ async function DisplayTaxis() {
                         </div>
                     </div>
                 `;
-
                 taxisContainer.appendChild(taxiDiv);
             });
 
-            // Add event listeners to Book Now buttons after they are created
+          
             const bookButtons = document.querySelectorAll('.BookButton');
             bookButtons.forEach(button => {
                 button.addEventListener('click', function () {
