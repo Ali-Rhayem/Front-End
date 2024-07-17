@@ -3,116 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="home.css">
-    <link href="https://fonts.googleapis.com/css2?family=Imperial+Script&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <title>JourneyJoy</title>
+    <title>Trip Planner Bot</title>
+    <!-- <link rel="stylesheet" href="style.css"> -->
 </head>
 <body>
-    <header>
-        <div class="Navbar">
-            <a class="logo" href="#">LetsFly</a>
-            <div class="nav_items">
-                <a href="#">Flights</a>
-                <a href="#">Hotels</a>
-                <a href="#">Taxis</a>
-                <a href="#">Contact</a>
-            </div>
+    <div class="chat-container">
+        <div id="chatbox">
+            <div id="chat-log"></div>
+            <input type="text" id="user-input" placeholder="Type your trip details here...">
+            <button id="send-btn">Send</button>
         </div>
-    </header>
-    
-    <main>
-        <h1 class="section_1">Where Do You Want To Go ?</h1>
-        <div class="spline-container">
-            <div class="overlay">
-                <h1 class="overlay-text" id="welcome-text"></h1>
-                <button class="overlay-btn" id="btn-flights">Search Flights Everywhere</button>
-            </div>
-            <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.0/build/spline-viewer.js"></script>
-            <spline-viewer id="spline-viewer" url="https://prod.spline.design/wxhjb52PbBzJJlKD/scene.splinecode"></spline-viewer>
-            <div class="tooltip" id="tooltip"></div>
-        </div>
+    </div>
 
-        <div class="cards-container">
-            <div class="card">
-                <img src="Assets/person1.jpg" alt="Person 1">
-                <h2>John Doe</h2>
-                <p>"Booking my flight through LetsFly was a seamless experience. The interface is user-friendly and I found great deals easily."</p>
-            </div>
-            <div class="card">
-                <img src="Assets/person2.png" alt="Person 2">
-                <h2>Jane Smith</h2>
-                <p>"I loved how easy it was to book a hotel. The customer support was very helpful and I had a wonderful stay thanks to LetsFly."</p>
-            </div>
-            <div class="card">
-                <img src="Assets/person3.png" alt="Person 3">
-                <h2>Emily Johnson</h2>
-                <p>"Renting a car was hassle-free and I got a great rate. I highly recommend LetsFly for all travel needs."</p>
-            </div>
-        </div>
-    </main>
-
-    <footer class="footer">
-        <div class="footer-left">
-            <a class="footer-logo" href="#">LetsFly</a>
-            <a href="#">About Us</a>
-            <a href="#">Contact Us</a>
-        </div>
-        <div class="footer-right">
-            <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
-            <a href="#"><i class="fa-brands fa-twitter"></i></a>
-            <a href="#"><i class="fa fa-envelope"></i></a>
-            <a href="#"><i class="fa fa-phone"></i></a>
-        </div>
-    </footer>
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const text = "Welcome to Journey Joy International Airport";
-            const textElement = document.getElementById("welcome-text");
-            let index = 0;
-
-            function typeWriter() {
-                if (index < text.length) {
-                    textElement.innerHTML += text.charAt(index);
-                    index++;
-                    setTimeout(typeWriter, 100); // Adjust typing speed here
-                }
-            }
-
-            typeWriter();
-        });
-
-        document.addEventListener('DOMContentLoaded', function() {
-            const viewer = document.getElementById('spline-viewer');
-            const tooltip = document.getElementById('tooltip');
-
-viewer.addEventListener('mouseenter', function(event) {
-    if (event.target.id === 'your-airplane-id') {
-        tooltip.style.display = 'block';
-        tooltip.innerHTML = `
-            <strong>Flight Details:</strong><br>
-            Flight Number: AB123<br>
-            Departure: XYZ Airport<br>
-            Arrival: ABC Airport<br>
-            Time: 10:00 AM - 1:00 PM
-        `;
-    }
-});
-
-viewer.addEventListener('mousemove', function(event) {
-    if (tooltip.style.display === 'block') {
-        tooltip.style.left = `${event.clientX + 10}px`;
-        tooltip.style.top = `${event.clientY + 10}px`;
-    }
-});
-
-viewer.addEventListener('mouseleave', function(event) {
-    if (event.target.id === 'your-airplane-id') {
-        tooltip.style.display = 'none';
-    }
-});
-});
-</script>
+    <script src="scripts/script.js"></script>
 </body>
 </html>
-
